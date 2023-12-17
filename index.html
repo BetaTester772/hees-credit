@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Credit</title>
+    <style>
+        body {
+            background: black;
+            height: 6000px;
+            font-family: 'sans-serif';
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .credit-item {
+            display: flex;
+            margin-top: 1000px;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.3s;
+            align-items: center; /* Center vertically */
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 100px; /* Adjust the size of your profile image */
+            height: 100px; /* Adjust the size of your profile image */
+            border-radius: 50%; /* Make it round */
+        }
+
+
+        .credit-container {
+            align-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        @keyframes slideFromLeft {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideFromRight {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .credit-section {
+            margin-top: 80px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .badge-container img {
+            border: 2px solid #f3f4f6;
+        }
+
+        .github-badge-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .github-badge-container img{
+            border: 2px solid white;
+            box-shadow: 0 0 10px black;
+        }
+
+        .github-badge-container img:hover {
+            opacity: 0.8;
+            border: 2px solid white;
+            box-shadow: 0 0 10px #EDEDF2;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="credit-section">
+    <div class="credit-container">
+        <div class="credit-item">
+            <div style="align-items: center; justify-content: center;">
+                <img src="https://avatars.githubusercontent.com/u/74451807?v=4" alt="Profile Image"
+                     class="profile-image">
+                <h1>안호성 | Hoseong Ahn</h1>
+                <div class="github-badge-container">
+                    <a href="https://github.com/BetaTester772" target="_blank">
+                        <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
+                             alt="GitHub">
+                    </a>
+                </div>
+                <h2>Back-end web developer</h2>
+                <h2>백엔드 프로그래밍 및 배포를 담당했습니다.</h2>
+                <div class="badge-container" style="margin-bottom: 2px;">
+                    <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
+                         alt="Python">
+                    <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi"
+                         alt="FastAPI">
+                    <img src="https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white"
+                         alt="Redis">
+                    <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"
+                         alt="Postgres">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="credit-container">
+        <div class="credit-item">
+            <div class="profile-info">
+                <img src="https://avatars.githubusercontent.com/u/79254036?v=4" alt="Profile Image"
+                     class="profile-image">
+                <h1>안세용</h1>
+                <h2>포론트엔드 개발자</h2>
+                <p>홀롤로</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let left_animation = new IntersectionObserver((e) => {
+        console.log(e)
+        e.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1
+                entry.target.style.animation = 'slideFromLeft 0.5s ease-in-out '
+
+                // 애니메이션 재설정을 위한 setTimeout 사용
+                setTimeout(() => {
+                    entry.target.style.animation = '';
+                }, 500); // 애니메이션 지속 시간과 동일한 시간 설정
+            } else {
+                entry.target.style.opacity = 0
+            }
+        })
+    })
+
+    let right_animation = new IntersectionObserver((e) => {
+        console.log(e)
+        e.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1
+                entry.target.style.animation = 'slideFromRight 0.5s ease-in-out'
+
+                // 애니메이션 재설정을 위한 setTimeout 사용
+                setTimeout(() => {
+                    entry.target.style.animation = '';
+                }, 500);
+            } else {
+                entry.target.style.opacity = 0
+            }
+        })
+    })
+
+    let credit_item = document.querySelectorAll('.credit-item')
+
+    left_animation.observe(credit_item[0])
+    right_animation.observe(credit_item[1])
+    left_animation.observe(credit_item[2])
+
+</script>
+</body>
+</html>
